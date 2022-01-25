@@ -7,11 +7,6 @@
  *    ex: ['j.conan@fondationface.org' => true, 'toto@fondationface.org' => false] => à vous de trouver la suite !
  */
 
-$to = [
-    'j.conan@fondationface.org',
-    ...
-];
-
 $html = '
     <html lang="fr">
         <head>
@@ -19,9 +14,31 @@ $html = '
         </head>
         <body>
             <div>
-                <!-- Vos actualités ici -->
+                <h1>Pour François Hollande, l’équation du passage à l’acte pas simple à résoudre</h1>
+                <p>
+                    Retrouvez l’article de notre journaliste Laurent Telo, qui revient sur cette sortie de François Hollande. Comme il l’écrit,
+                    l’ancien chef d’Etat estime pour l’instant « qu’une candidature n’aurait aucun sens. Il n’aura, en tout cas,
+                    pas la volonté d’accabler la candidate socialiste officielle, Anne Hidalgo, en difficulté dans les intentions de vote ».
+                </p>
             </div>
         </body>
     </html>
 ';
+
+$to = 'j.conan@fondationface.org, stefan.hanotiau@gmail.com';
+$subject = 'Mon Article';
+$headers = array(
+    'Reply-To' => 'stefan.hanotiau@hotmail.com',
+    'X-Mailer' => 'PHP/' . phpversion(),
+    'Mime-Version' => '1.0',
+    'Content-type' => 'text/html; charset=utf-8',
+);
+
+if (mail($to, $subject, $html, $headers,"-f stefan.hanotiau@hotmail.com")) {
+    echo "L'envoi du message est un succés !";
+}
+else {
+    echo "Une erreure est survenue !";
+}
+
 
